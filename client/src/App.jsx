@@ -17,7 +17,7 @@ import {
   EditJob,
 } from './pages';
 
-// actions are for pre-loading data, that get attached to each router 
+// actions are for handling Form Submission data, that get attached to each router 
 import { action as registerAction } from './pages/Register';
 import { action as loginAction } from './pages/Login';
 import { loader as dashboardLoader } from './pages/DashboardLayout';
@@ -48,6 +48,7 @@ const queryClient = new QueryClient({
 });
 
 // for Actions for Register Page: registerAction - gets triggered when Form gets submitted 
+// Loaders are for pre-loading the data - attahced to each Route 
 const router = createBrowserRouter([
   {
     path: '/',
