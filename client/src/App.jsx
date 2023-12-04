@@ -2,7 +2,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
-import { // ddddd
+import { 
   HomeLayout,
   Landing,
   Register,
@@ -17,6 +17,7 @@ import { // ddddd
   EditJob,
 } from './pages';
 
+// actions are for pre-loading data, that get attached to each router 
 import { action as registerAction } from './pages/Register';
 import { action as loginAction } from './pages/Login';
 import { loader as dashboardLoader } from './pages/DashboardLayout';
@@ -46,6 +47,7 @@ const queryClient = new QueryClient({
   },
 });
 
+// register - action: registerAction - gets triggered when Form gets submitted 
 const router = createBrowserRouter([
   {
     path: '/',
