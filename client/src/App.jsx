@@ -47,7 +47,7 @@ const queryClient = new QueryClient({
   },
 });
 
-// register - action: registerAction - gets triggered when Form gets submitted 
+// for Actions for Register Page: registerAction - gets triggered when Form gets submitted 
 const router = createBrowserRouter([
   {
     path: '/',
