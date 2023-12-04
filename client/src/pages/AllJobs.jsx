@@ -25,21 +25,28 @@ const allJobsQuery = (params) => {
   };
 };
 
-export const loader =
-  (queryClient) =>
+// for Pre-Loading the data by using userLoadDate() 
+export const loader = (queryClient) =>
   async ({ request }) => {
     const params = Object.fromEntries([
       ...new URL(request.url).searchParams.entries(),
     ]);
 
+    // cache the info 
     await queryClient.ensureQueryData(allJobsQuery(params));
     return { searchValues: { ...params } };
   };
 
 const AllJobsContext = createContext();
 const AllJobs = () => {
-  const { searchValues } = useLoaderData();
+  
+  const { searchValues } = useLoaderData(); 
+  // extract like this: const { searchValues } = useAllJobsContext();
+  // const { search, jobStatus, jobType, sort } = searchValues;
+
+  
   const { data } = useQuery(allJobsQuery(searchValues));
+  
   return (
     <AllJobsContext.Provider value={{ data, searchValues }}>
       <SearchContainer />
