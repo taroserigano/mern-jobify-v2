@@ -51,10 +51,14 @@ const DashboardLayout = ({ queryClient }) => {
     toast.success('Logging out...');
   };
 
+  // basicaly, error checking 
   customFetch.interceptors.response.use(
+    // check no error ? 
     (response) => {
+      // if no, just return as is 
       return response;
     },
+    // error found! 
     (error) => {
       if (error?.response?.status === 401) {
         setIsAuthError(true);
