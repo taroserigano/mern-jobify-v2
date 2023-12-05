@@ -25,6 +25,9 @@ const allJobsQuery = (params) => {
   };
 };
 
+// 1. extract params
+// 2. fetch the data
+// 3. return the searchValues 
 export const loader =
   (queryClient) =>
   async ({ request }) => {
