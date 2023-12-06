@@ -26,10 +26,13 @@ export const login = async (req, res) => {
 
   const oneDay = 1000 * 60 * 60 * 24;
 
+  // creating http-only cookie
+  // http-restricted cookie methods are far more secure than local storage 
   res.cookie('token', token, {
     httpOnly: true,
     expires: new Date(Date.now() + oneDay),
     // return "true" only in production 
+    // for DEV, remove http only restriction 
     secure: process.env.NODE_ENV === 'production',
   });
   res.status(StatusCodes.OK).json({ msg: 'user logged in' });
