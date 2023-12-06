@@ -108,6 +108,76 @@ queryClient.invalidateQueries();
 ---------------------------
 
 
+export const hashPassword = async (password) => {
+    // generate salt 
+  const salt = await bcrypt.genSalt(10);
+  // hash the password with salt 
+  const hashedPassword = await bcrypt.hash(password, salt);
+  
+  return hashedPassword;
+};
+
+export const comparePassword = async (password, hashedPassword) => {
+  // compare and validate the given password 
+  const isMatch = await bcrypt.compare(password, hashedPassword);
+  return isMatch;
+};
+
+
+
+
+
+
+
+
+  // creating http-only cookie
+  // http-restricted cookie methods are far more secure than local storage 
+  res.cookie('token', token, {
+    httpOnly: true,
+    expires: new Date(Date.now() + oneDay),
+    // return "true" only in production 
+    // for DEV, remove http only restriction 
+    secure: process.env.NODE_ENV === 'production',
+  });
+  res.status(StatusCodes.OK).json({ msg: 'user logged in' });
+}; 
+
+
+
+------------------------------------------------------------
+
+FILE UPLOAD 
+
+const storage = multer.memoryStorage();
+
+const upload = multer({ storage });
+
+const parser = new DataParser();
+
+// this will format the image file to the FILE that is, READY FOR upload
+export const formatImage = (file) => {
+  const fileExtension = path.extname(file.originalname).toString();
+  return parser.format(fileExtension, file.buffer).content;
+};
+
+export default upload;
+
+
+User controller.js 
+
+ if (req.file) {
+    const file = formatImage(req.file);
+    const response = await cloudinary.v2.uploader.upload(file);
+
+
+---------------------------
+
+
+
+
+
+
+
 
 
 
