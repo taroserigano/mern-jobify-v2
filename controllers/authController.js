@@ -29,6 +29,7 @@ export const login = async (req, res) => {
   res.cookie('token', token, {
     httpOnly: true,
     expires: new Date(Date.now() + oneDay),
+    // return "true" only in production 
     secure: process.env.NODE_ENV === 'production',
   });
   res.status(StatusCodes.OK).json({ msg: 'user logged in' });
